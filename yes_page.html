@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Knew you would say yes!</title>
+  <link rel="stylesheet" href="./yes_style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1 class="header_text">Knew you would say yes!</h1>
+    <h2 class="header_text"> Love you so much Aisu muu athe than black dress potutu readya iru Will pick you up for a candle light dinner</h2>
+    <div class="gif_container">
+      <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" alt="Bear kisses">
+    </div>
+
+    <!-- Fallback/tap-to-start button -->
+    <button id="muteToggle" class="mute-btn" style="margin-top:16px;">🔊 Mute</button>
+  </div>
+
+  <!-- SAME id and SAME path as on index.html -->
+  <audio id="bg-music" preload="auto" playsinline loop>
+    <source src="assets/ily.mp3" type="audio/mpeg">
+    <!-- <source src="assets/valentine.ogg" type="audio/ogg"> -->
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    (function () {
+      const audio = document.getElementById('bg-music');
+      const fromYes = sessionStorage.getItem('playMusicFromYesClick') === '1';
+      console.log('[yes_page] fromYes flag =', fromYes);
+
+      if (audio) {
+        audio.volume = 0.6;
+
+        if (fromYes) {
+          const p = audio.play();
+          if (p && typeof p.then === 'function') {
+            p.then(() => console.log('[yes_page] continued playback OK'))
+             .catch((e) => console.log('[yes_page] autoplay blocked; need user tap:', e));
+          }
+        }
+
+        // Mute toggle also acts as "tap to start" if autoplay blocked
+        const btn = document.getElementById('muteToggle');
+        if (btn) {
+          const updateLabel = () => btn.textContent = audio.muted ? '🔇 Unmute' : '🔊 Mute';
+          updateLabel();
+
+          btn.addEventListener('click', () => {
+            audio.muted = !audio.muted;
+            if (audio.paused) {
+              audio.play().catch((e) => console.log('[yes_page] play() blocked:', e));
+            }
+            updateLabel();
+          });
+        }
+      }
+
+      // Clear the flag so refresh doesn’t auto-play
+      sessionStorage.removeItem('playMusicFromYesClick');
+    })();
+  </script>
+</body>
+</html>

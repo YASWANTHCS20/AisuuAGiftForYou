@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aisu maaa, Will You Be My Valentine?</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div class="container">
+    <div class="gif_container">
+      <img src="https://gifdb.com/images/high/cute-love-bear-roses-ou7zho5oosxnpo6k.gif" alt="Cute GIF">
+    </div>
+    <h1>Aisuumaa, Will you be my Valentine?</h1>
+
+    <div class="buttons">
+      <button class="yes-button" onclick="handleYesClick()">Yes</button>
+      <button class="no-button" onclick="handleNoClick()">No</button>
+    </div>
+  </div>
+
+  <!-- Proper audio element (do NOT put plain text inside) -->
+  <audio id="bg-music" preload="auto" playsinline loop>
+    <source src="assets/ily.mp3" type="audio/mpeg">
+    <!-- Optional additional format for wider support -->
+    <!-- <source src="assets/valentine.ogg" type="audio/ogg"> -->
+    Your browser does not support the audio element.
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
